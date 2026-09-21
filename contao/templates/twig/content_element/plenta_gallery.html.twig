@@ -1,0 +1,44 @@
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% use '@Contao/component/_list.html.twig' %}
+{% use '@Contao/component/_figure.html.twig' %}
+{% use '@Contao/component/_rich_text.html.twig' %}
+
+{% set attributes = attrs()
+    .addClass("content-plenta-gallery-#{mode}")
+    .addClass("content-plenta-gallery--cols-#{items_per_row|default(4)}", mode == 'reader')
+    .mergeWith(attributes|default)
+%}
+
+{% block content %}
+    {% if mode == 'teaser' and cover %}
+        {% with {figure: cover} %}{{ block('figure_component') }}{% endwith %}
+    {% endif %}
+
+    {% if gallery_date %}
+        <p class="date"><time datetime="{{ gallery_date.datetime }}">{{ gallery_date.formatted }}</time></p>
+    {% endif %}
+
+    {% if text %}
+        {% with {text, attributes: text_attributes|default} %}{{ block('rich_text_component') }}{% endwith %}
+    {% endif %}
+
+    {% if mode == 'teaser' and image_count %}
+        <p class="count">{{ image_count == 1 ? 'MSC.plentaGalleryCountOne'|trans({}, 'contao_default') : 'MSC.plentaGalleryCountMany'|trans([image_count], 'contao_default') }}</p>
+    {% endif %}
+
+    {% if mode == 'reader' %}
+        {% if images %}
+            {% with {items: images} %}{{ block('list_component') }}{% endwith %}
+        {% endif %}
+
+        {% if back_href %}
+            <p class="back"><a href="{{ back_href }}">{{ 'MSC.plentaGalleryBack'|trans({}, 'contao_default') }}</a></p>
+        {% endif %}
+    {% elseif href %}
+        <p class="more"><a href="{{ href }}">{{ link_text ?: 'MSC.plentaGalleryOpen'|trans({}, 'contao_default') }}</a></p>
+    {% endif %}
+{% endblock %}
+
+{% block list_item %}
+    {% with {figure: item} %}{{ block('figure_component') }}{% endwith %}
+{% endblock %}

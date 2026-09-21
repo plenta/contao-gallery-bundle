@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Plenta\GalleryBundle\:
+        resource: ../src/*
+        exclude: ../src/{ContaoManager,PlentaGalleryBundle.php}
+
+    Plenta\GalleryBundle\Controller\ContentElement\GalleryController:
+        arguments:
+            $filesStorage: '@contao.filesystem.virtual.files'
+            $studio: '@contao.image.studio'
+            $validExtensions: '%contao.image.valid_extensions%'
+            $paginationFactory: '@contao.pagination.factory'

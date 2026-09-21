@@ -1,0 +1,40 @@
+{
+    "name": "plenta/contao-gallery-bundle",
+    "type": "contao-bundle",
+    "description": "Gallery content element with teaser, alias-based URL and image grid for Contao 5",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Plenta.io",
+            "homepage": "https://plenta.io"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/plenta/contao-gallery-bundle/issues",
+        "source": "https://github.com/plenta/contao-gallery-bundle"
+    },
+    "require": {
+        "php": "^8.4",
+        "contao/core-bundle": "^5.7"
+    },
+    "require-dev": {
+        "contao/manager-bundle": "^5.7"
+    },
+    "extra": {
+        "contao-manager-plugin": "Plenta\\GalleryBundle\\ContaoManager\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Plenta\\GalleryBundle\\": "src"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "contao-components/installer": true,
+            "contao/manager-plugin": true,
+            "contao-community-alliance/composer-plugin": true,
+            "php-http/discovery": true
+        }
+    }
+}

@@ -1,0 +1,33 @@
+CTE:
+    plenta_gallery:
+        0: Foto-Album
+        1: Teaser mit Titelbild und Alias-Link, der ein Bildraster eines Verzeichnisses öffnet.
+tl_content:
+    galleryTitle:
+        0: Titel
+        1: Der Titel der Galerie. Daraus wird der Alias erzeugt.
+    galleryAlias:
+        0: Alias
+        1: Der Alias wird an die URL der Seite angehängt. Leer lassen, um ihn aus dem Titel zu erzeugen.
+    galleryText:
+        0: Text
+        1: Der Text, der im Teaser und über den Bildern angezeigt wird.
+    galleryLinkText:
+        0: Link-Text
+        1: Der Text des Links im Teaser. Leer lassen, um den Standardtext zu verwenden.
+    galleryDate:
+        0: Datum
+        1: Das Datum des Albums, zum Beispiel das Datum der Veranstaltung. Es wird im Teaser und in der Galerie angezeigt.
+    gallerySortBy:
+        0: Sortierung der Bilder
+        1: Legt fest, in welcher Reihenfolge die Bilder des Verzeichnisses angezeigt werden.
+    galleryFolder:
+        0: Verzeichnis
+        1: Bitte wählen Sie das Verzeichnis mit den Galerie-Bildern.
+    galleryCover:
+        0: Titelbild
+        1: Das Bild, das im Teaser angezeigt wird.
+    galleryCoverSize:
+        0: Titelbild-Größe
+        1: Die Größe des Titelbilds im Teaser. Die Bildgröße darüber gilt für die Galerie-Bilder.
+    gallery_legend: Galerie-Einstellungen
