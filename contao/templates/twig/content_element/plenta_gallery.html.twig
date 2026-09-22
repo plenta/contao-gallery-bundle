@@ -5,7 +5,7 @@
 
 {% set attributes = attrs()
     .addClass("content-plenta-gallery-#{mode}")
-    .addClass("content-plenta-gallery--cols-#{items_per_row|default(4)}", mode == 'reader')
+    .addClass(['content-gallery', "content-gallery--cols-#{items_per_row|default(4)}"], mode == 'reader')
     .mergeWith(attributes|default)
 %}
 
