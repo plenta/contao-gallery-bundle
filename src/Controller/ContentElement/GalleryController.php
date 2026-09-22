@@ -34,6 +34,7 @@ use Contao\PageModel;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 #[AsContentElement('plenta_gallery', category: 'media')]
 class GalleryController extends AbstractContentElementController
@@ -42,10 +43,14 @@ class GalleryController extends AbstractContentElementController
      * @param array<string> $validExtensions
      */
     public function __construct(
+        #[Autowire(service: 'contao.filesystem.virtual.files')]
         private readonly VirtualFilesystemInterface $filesStorage,
+        #[Autowire(service: 'contao.image.studio')]
         private readonly Studio $studio,
+        #[Autowire(param: 'contao.image.valid_extensions')]
         private readonly array $validExtensions,
         private readonly Connection $connection,
+        #[Autowire(service: 'contao.pagination.factory')]
         private readonly PaginationFactoryInterface $paginationFactory,
     ) {
     }
