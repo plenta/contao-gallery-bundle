@@ -91,6 +91,18 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['galleryCoverSize'] = [
     'exclude' => true,
     'inputType' => 'imageSize',
     'reference' => &$GLOBALS['TL_LANG']['MSC'],
-    'eval' => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50 clr'),
-    'sql' => array('type'=>'string', 'length'=>255, 'default'=>'', 'platformOptions'=>array('collation'=>'ascii_bin'))
+    'options_callback' => ['contao.listener.image_size_options', '__invoke'],
+    'eval' => [
+        'rgxp' => 'natural',
+        'includeBlankOption' => true,
+        'nospace' => true,
+        'helpwizard' => true,
+        'tl_class' => 'w50 clr',
+    ],
+    'sql' => [
+        'type' => 'string',
+        'length' => 255,
+        'default' => '',
+        'platformOptions' => ['collation'=>'ascii_bin']
+    ],
 ];

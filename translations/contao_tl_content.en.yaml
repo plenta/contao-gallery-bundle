@@ -1,33 +1,33 @@
 CTE:
     plenta_gallery:
-        0: Photo album
-        1: Teaser with cover image and an alias link that opens an image grid of a folder.
+        - Photo album
+        - Teaser with cover image and an alias link that opens an image grid of a folder.
 tl_content:
     galleryTitle:
-        0: Title
-        1: The title of the gallery. The alias is generated from it.
+        - Title
+        - The title of the gallery. The alias is generated from it.
     galleryAlias:
-        0: Alias
-        1: The alias is appended to the page URL. Leave empty to generate it from the title.
+        - Alias
+        - The alias is appended to the page URL. Leave empty to generate it from the title.
     galleryText:
-        0: Text
-        1: The text shown in the teaser and above the images.
+        - Text
+        - The text shown in the teaser and above the images.
     galleryLinkText:
-        0: Link text
-        1: The text of the teaser link. Leave empty to use the default text.
+        - Link text
+        - The text of the teaser link. Leave empty to use the default text.
     galleryDate:
-        0: Date
-        1: The date of the album, for example the date of the event. It is shown in the teaser and in the gallery.
+        - Date
+        - The date of the album, for example the date of the event. It is shown in the teaser and in the gallery.
     gallerySortBy:
-        0: Image sorting
-        1: Defines the order in which the images of the folder are displayed.
+        - Image sorting
+        - Defines the order in which the images of the folder are displayed.
     galleryFolder:
-        0: Folder
-        1: Please choose the folder containing the gallery images.
+        - Folder
+        - Please choose the folder containing the gallery images.
     galleryCover:
-        0: Cover image
-        1: The image shown in the teaser.
+        - Cover image
+        - The image shown in the teaser.
     galleryCoverSize:
-        0: Cover image size
-        1: The size of the cover image in the teaser. The image size above applies to the gallery images.
+        - Cover image size
+        - The size of the cover image in the teaser. The image size above applies to the gallery images.
     gallery_legend: Gallery settings
