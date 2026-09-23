@@ -53,7 +53,8 @@
 
     {% block more %}
         {% if mode != 'reader' and href %}
-            <p class="more"><a href="{{ href }}">{{ link_text ?: 'MSC.plentaGalleryOpen'|trans({}, 'contao_default') }}</a></p>
+            {% set label = link_text ?: 'MSC.plentaGalleryOpen'|trans({}, 'contao_default') %}
+            <p class="more"><a href="{{ href }}" title="{{ titleText ?: label }}">{{ label }}</a></p>
         {% endif %}
     {% endblock %}
 {% endblock %}

@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_gallery'] = '
     {type_legend},type,galleryTitle,galleryAlias,headline,galleryDate;
-    {text_legend},galleryText,galleryLinkText;
+    {text_legend},galleryText,galleryLinkText,titleText;
     {gallery_legend},galleryFolder,gallerySortBy,size,fullsize,perRow,perPage,serverPagination,galleryCover,galleryCoverSize;
     {template_legend:hide},customTpl;
     {protected_legend:hide},protected;

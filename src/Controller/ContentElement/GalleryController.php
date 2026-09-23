@@ -73,6 +73,7 @@ class GalleryController extends AbstractContentElementController
         $template->set('gallery_date', $model->galleryDate);
         $template->set('text', (string) $model->galleryText);
         $template->set('link_text', (string) $model->galleryLinkText);
+        $template->set('titleText', (string) ($model->titleText ?: $model->galleryLinkText));
         $template->set('items_per_row', $model->perRow ?: null);
         $template->set('href', null);
         $template->set('back_href', null);
