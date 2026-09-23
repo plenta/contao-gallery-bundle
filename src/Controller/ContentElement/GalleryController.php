@@ -28,9 +28,7 @@ use Contao\CoreBundle\Image\Studio\Studio;
 use Contao\CoreBundle\Pagination\PaginationConfig;
 use Contao\CoreBundle\Pagination\PaginationFactoryInterface;
 use Contao\CoreBundle\Twig\FragmentTemplate;
-use Contao\Date;
 use Contao\Input;
-use Contao\PageModel;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -72,7 +70,7 @@ class GalleryController extends AbstractContentElementController
 
         $template->set('mode', $isGallery ? 'reader' : 'teaser');
         $template->set('gallery_title', (string) $model->galleryTitle);
-        $template->set('gallery_date', $this->getDate($model, $page));
+        $template->set('gallery_date', $model->galleryDate);
         $template->set('text', (string) $model->galleryText);
         $template->set('link_text', (string) $model->galleryLinkText);
         $template->set('items_per_row', $model->perRow ?: null);
@@ -113,25 +111,6 @@ class GalleryController extends AbstractContentElementController
             'SELECT id FROM tl_content WHERE type = ? AND galleryAlias = ? AND invisible = 0 LIMIT 1',
             ['plenta_gallery', $alias],
         );
-    }
-
-    /**
-     * @return array{timestamp: int, datetime: string, formatted: string}|null
-     */
-    private function getDate(ContentModel $model, PageModel|null $page): array|null
-    {
-        if (!$model->galleryDate) {
-            return null;
-        }
-
-        $timestamp = (int) $model->galleryDate;
-        $format = $page?->dateFormat ?: $this->getContaoAdapter(Config::class)->get('dateFormat');
-
-        return [
-            'timestamp' => $timestamp,
-            'datetime' => date('Y-m-d', $timestamp),
-            'formatted' => $this->getContaoAdapter(Date::class)->parse($format, $timestamp),
-        ];
     }
 
     private function getItems(ContentModel $model): FilesystemItemIterator
