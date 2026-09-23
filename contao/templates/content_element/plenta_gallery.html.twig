@@ -6,37 +6,56 @@
 {% set attributes = attrs()
     .addClass("content-plenta-gallery-#{mode}")
     .addClass(['content-gallery', "content-gallery--cols-#{items_per_row|default(4)}"], mode == 'reader')
-    .mergeWith(attributes|default)
-%}
+    .mergeWith(attributes|default) %}
+
+{% block headline_attributes %}{{ attrs(headline.attributes|default).addClass('gallery-headline') }}{% endblock %}
 
 {% block content %}
-    {% if mode == 'teaser' and cover %}
-        {% with {figure: cover} %}{{ block('figure_component') }}{% endwith %}
-    {% endif %}
+    {% block cover %}
+        {% if mode == 'teaser' and cover %}
+            {% with {figure: cover} %}{{ block('figure_component') }}{% endwith %}
+        {% endif %}
+    {% endblock %}
 
-    {% if gallery_date %}
-        <p class="date"><time datetime="{{ gallery_date.datetime }}">{{ gallery_date.formatted }}</time></p>
-    {% endif %}
+    {% block date %}
+        {% if gallery_date %}
+            <p class="date">
+                <time datetime="{{ gallery_date|date(contao.date_format) }}">{{ gallery_date|date(contao.date_format) }}</time>
+            </p>
+        {% endif %}
+    {% endblock %}
 
-    {% if text %}
-        {% with {text, attributes: text_attributes|default} %}{{ block('rich_text_component') }}{% endwith %}
-    {% endif %}
+    {% block text %}
+        {% if text %}
+            {% with {text, attributes: text_attributes|default} %}{{ block('rich_text_component') }}{% endwith %}
+        {% endif %}
+    {% endblock %}
 
-    {% if mode == 'teaser' and image_count %}
-        <p class="count">{{ image_count == 1 ? 'MSC.plentaGalleryCountOne'|trans({}, 'contao_default') : 'MSC.plentaGalleryCountMany'|trans([image_count], 'contao_default') }}</p>
-    {% endif %}
+    {% block count %}
+        {% if image_count %}
+            <p class="count">{{ image_count == 1
+                ? 'MSC.plentaGalleryCountOne'|trans({}, 'contao_default')
+                : 'MSC.plentaGalleryCountMany'|trans([image_count], 'contao_default') }}</p>
+        {% endif %}
+    {% endblock %}
 
-    {% if mode == 'reader' %}
-        {% if images %}
+    {% block images %}
+        {% if mode == 'reader' and images %}
             {% with {items: images} %}{{ block('list_component') }}{% endwith %}
         {% endif %}
+    {% endblock %}
 
-        {% if back_href %}
+    {% block back %}
+        {% if mode == 'reader' and back_href %}
             <p class="back"><a href="{{ back_href }}">{{ 'MSC.plentaGalleryBack'|trans({}, 'contao_default') }}</a></p>
         {% endif %}
-    {% elseif href %}
-        <p class="more"><a href="{{ href }}">{{ link_text ?: 'MSC.plentaGalleryOpen'|trans({}, 'contao_default') }}</a></p>
-    {% endif %}
+    {% endblock %}
+
+    {% block more %}
+        {% if mode != 'reader' and href %}
+            <p class="more"><a href="{{ href }}">{{ link_text ?: 'MSC.plentaGalleryOpen'|trans({}, 'contao_default') }}</a></p>
+        {% endif %}
+    {% endblock %}
 {% endblock %}
 
 {% block list_item %}

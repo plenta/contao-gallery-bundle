@@ -77,7 +77,7 @@ class GalleryController extends AbstractContentElementController
         $template->set('href', null);
         $template->set('back_href', null);
         $template->set('cover', null);
-        $template->set('image_count', null);
+        $template->set('image_count', $this->getItems($model)->count());
         $template->set('images', []);
 
         if ($isGallery) {
@@ -86,8 +86,6 @@ class GalleryController extends AbstractContentElementController
 
             return $template->getResponse();
         }
-
-        $template->set('image_count', $this->getItems($model)->count());
 
         if ($model->galleryCover) {
             $template->set('cover', $this->studio
